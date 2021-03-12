@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Личный сайт студента GeekBrains</title>
+	<link rel="stylesheet" href="style.css"> 
+	<script type="text/javascript">
+
+		var score = 0;
+
+		function checkAnswer(inputId, answers){
+			var userAnswer = document.getElementById(inputId).value;
+			userAnswer = userAnswer.toLowerCase();
+			for(var i = 0; i < answers.length; i++){
+				if(userAnswer == answers[i]){
+					score++;
+					break;
+				}
+			}
+		}
+		
+		function checkAnswers() {
+
+			checkAnswer("userAnswer1", ["ножницы", "ножни"]);
+			checkAnswer("userAnswer2", ["морковка", "морковь"]);
+			checkAnswer("userAnswer3", ["молоко", "молочко"]);
+
+			alert("У вас правильных ответов " + score + " из 3");
+
+		}
+
+	</script>
+</head>
+<body>
+
+<div class="content">
+	<?php
+        include "menu.php";
+        ?>
+
+<div class="contentWrap">
+    <div class="content">
+        <div class="center">
+
+			<h1>Игра в загадки</h1>
+
+			<div class="box">
+
+				<p>Два конца, два кольца, посредине гвоздик.</p>
+				<input type="text" id="userAnswer1">
+
+				<p>Красна девица сидит в темнице, а коса на улице.</p>
+				<input type="text" id="userAnswer2">
+
+				<p>Жидкое, а не вода, белое, а не снег.</p>
+				<input type="text" id="userAnswer3">
+
+				<br>
+				<a href="#" onClick="checkAnswers();">Ответить</a>
+
+			</div>
+
+        </div>
+    </div>
+</div>
+
+</div>
+<div class="footer">
+	<a class="yandex" href="https://clck.yandex.ru/redir/dtype=stred/pid=7/cid=1228/*https://yandex.ru/pogoda/6" target="_blank"><img src="https://info.weather.yandex.net/6/1.ru.png?domain=ru" border="0" alt="Яндекс.Погода"/><img width="1" height="1" src="https://clck.yandex.ru/click/dtype=stred/pid=7/cid=1227/*https://img.yandex.ru/i/pix.gif" alt="" border="0"/></a>
+	Copyright &copy; <?php echo date("Y"); ?> Anatoliy Dubrovskiy
+<div>
+</body>
+</html>

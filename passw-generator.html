@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Личный сайт студента GeekBrains</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="content">
+	<?php
+        include "menu.php";
+    ?>
+		<h1>Генератор случайных паролей<br> (из латинских букв и цифр)</h1>
+		<div class="box">
+			<p>Какие символы включать в пароль:</p>
+			<ul class="password__generate">
+				<li><input id="arr_num" type="checkbox" /> Цифры</li>
+				<li><input id="arr_en" type="checkbox" /> aнглийский строчные буквы</li>
+				<li><input id="arr_EN" type="checkbox" /> АНГЛИЙСКИЙ ЗАГЛАВНЫЕ БУКВЫ</li>
+			</ul>
+			<p>Количество символов в пароле: <input id="passLenght" type="number" step="1" min="4" max="20" value="7"></p>
+			<p>Сгенерированный пароль: <span id="result"></span></p>
+			<a href="#" onClick="passw-generator();" id="pass_start">Сгенерировать пароль</a>
+		</div>
+
+</div>
+<div class="footer">
+	<a class="yandex" href="https://clck.yandex.ru/redir/dtype=stred/pid=7/cid=1228/*https://yandex.ru/pogoda/6" target="_blank"><img src="https://info.weather.yandex.net/6/1.ru.png?domain=ru" border="0" alt="Яндекс.Погода"/><img width="1" height="1" src="https://clck.yandex.ru/click/dtype=stred/pid=7/cid=1227/*https://img.yandex.ru/i/pix.gif" alt="" border="0"/></a>
+	Copyright &copy; <?php echo date("Y"); ?> Anatoliy Dubrovskiy
+<div>
+<script>
+		let arr_num = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+		let arr_en = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+		let arr_EN = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+		const compareRandom = ( ) => Math.random() - 0.5;
+
+const randomInteger = ( min, max ) => Math.round(min - 0.5 + Math.random() * (max - min + 1));
+
+function generatePassword() {
+    let arr = [];
+    if (document.querySelector('#arr_num').checked) arr = arr.concat(arr_num);
+    if (document.querySelector('#arr_en').checked) arr = arr.concat(arr_en);
+    if (document.querySelector('#arr_EN').checked) arr = arr.concat(arr_EN);
+
+    arr.sort(compareRandom);
+
+    let password = '';
+    let passLenght = document.querySelector('#passLenght').value;
+
+    for (let i = 0; i < passLenght; i++) {
+        password += arr[randomInteger(0, arr.length - 1)];
+    }
+
+    document.querySelector('#result').textContent = password;
+}
+
+document.querySelector('#pass_start').addEventListener('click', generatePassword);
+</script>
+</body>
+</html>

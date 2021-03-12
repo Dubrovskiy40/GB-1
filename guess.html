@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Личный сайт студента GeekBrains</title>
+	<link rel="stylesheet" href="style.css"> 
+	<script type="text/javascript">
+function playGuess(numberOfPlayers) {
+	// игра "Угадайка"
+	// нужно угадать число от 0 до 100
+	// добавляем имена игроков:
+	var UserName = [];
+	if (numberOfPlayers == 1) {
+		UserName[0] = prompt("Введите имя игрока:");
+	} else {
+		for (var i = 0; i < numberOfPlayers; i++) {
+			UserName[i] = prompt("Введите имя игрока " + (i + 1) + ":");
+		}
+	}
+	// далее везде обращаемся к текущему игроку по имени
+
+	var currentUser = 0;
+
+	// загадываем число:
+	var answer = parseInt(Math.random() * 100);
+	// следующая строка - для отладки, в рабочей версии закомментирована:
+	// alert("Компьютер загадал число " + answer);
+		
+	while (true) {
+		var userAnswer = prompt(UserName[currentUser] + ", введите число от 0 до 100\n(чтобы выйти из игры, нажмите q)");
+		if (userAnswer == "й" || userAnswer == "q") {
+			break;  // выход из цикла
+		}
+		userAnswer = parseInt(userAnswer);
+	
+		if (userAnswer > answer) {
+			alert(UserName[currentUser] + ", Ваш ответ слишком большой!");
+		} else if (userAnswer < answer) {
+			alert(UserName[currentUser] + ", Ваш ответ слишком маленький!");
+		} else if (userAnswer == answer) {
+			alert(UserName[currentUser] + ", Вы угадали!");
+			break;
+		} else {
+			alert(UserName[currentUser] + ", нужно было ввести число...")
+		}
+	
+		// меняем текущего игрока на следующего:
+		currentUser++;
+		if (currentUser == numberOfPlayers) {
+			currentUser = 0;
+		}
+	}
+}
+	</script>
+</head>
+<body>
+
+<div class="content">
+	<?php
+        include "menu.php";
+        ?>
+
+<div class="contentWrap">
+    <div class="content">
+        <div class="center">
+
+			<h1>Игра угадайка</h1>
+
+			<div class="box">
+
+				<p id="info">Угадайте число от 0 до 100</p>
+				<input type="text" id="userAnswer">
+				<br>
+				<a href="#" onClick="guess();" id="button">Начать</a>				
+			</div>
+
+        </div>
+    </div>
+</div>
+
+</div>
+<div class="footer">
+	<a class="yandex" href="https://clck.yandex.ru/redir/dtype=stred/pid=7/cid=1228/*https://yandex.ru/pogoda/6" target="_blank"><img src="https://info.weather.yandex.net/6/1.ru.png?domain=ru" border="0" alt="Яндекс.Погода"/><img width="1" height="1" src="https://clck.yandex.ru/click/dtype=stred/pid=7/cid=1227/*https://img.yandex.ru/i/pix.gif" alt="" border="0"/></a>
+	Copyright &copy; <?php echo date("Y"); ?> Anatoliy Dubrovskiy
+<div>
+</body>
+</html>
